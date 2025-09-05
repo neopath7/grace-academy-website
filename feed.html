@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>Grace Academy Feed - Dental & Medical News</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <style type="text/tailwindcss">
+        @layer components {
+            .source-dental-news {
+                @apply border-l-4 border-blue-500 bg-blue-100;
+            }
+            .source-medical-news {
+                @apply border-l-4 border-green-500 bg-green-100;
+            }
+            .source-job-board {
+                @apply border-l-4 border-purple-500 bg-purple-100;
+            }
+            .source-student-post {
+                @apply border-l-4 border-pink-500 bg-pink-100;
+            }
+            .source-teacher-post {
+                @apply border-l-4 border-yellow-500 bg-yellow-100;
+            }
+            .source-professional-post {
+                @apply border-l-4 border-indigo-500 bg-indigo-100;
+            }
+            .source-default {
+                @apply border-l-4 border-gray-500 bg-gray-100;
+            }
+
+            .news-source-link {
+                @apply text-gray-700 transition-colors duration-200;
+            }
+            .news-source-link.source-all:hover,
+            .news-source-link.source-all.active {
+                @apply text-blue-600;
+            }
+            .news-source-link.source-dental-news:hover,
+            .news-source-link.source-dental-news.active {
+                @apply text-blue-600;
+            }
+            .news-source-link.source-medical-news:hover,
+            .news-source-link.source-medical-news.active {
+                @apply text-green-600;
+            }
+            .news-source-link.source-job-board:hover,
+            .news-source-link.source-job-board.active {
+                @apply text-purple-600;
+            }
+            .news-source-link.source-student-post:hover,
+            .news-source-link.source-student-post.active {
+                @apply text-pink-600;
+            }
+            .news-source-link.source-teacher-post:hover,
+            .news-source-link.source-teacher-post.active {
+                @apply text-yellow-600;
+            }
+            .news-source-link.source-professional-post:hover,
+            .news-source-link.source-professional-post.active {
+                @apply text-indigo-600;
+            }
+            .news-source-link.active {
+                @apply font-bold;
+            }
+            .news-article {
+                @apply transition-transform duration-200 ease-in-out;
+            }
+            .news-article:hover {
+                @apply transform scale-105 shadow-lg;
+            }
+            .social-media-card {
+                @apply bg-white rounded-xl shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl;
+            }
+            .social-media-image {
+                @apply w-full h-48 object-cover transition-transform duration-300;
+            }
+            .social-media-card:hover .social-media-image {
+                @apply transform scale-105;
+            }
+            .line-clamp-2 {
+                display: -webkit-box;
+                -webkit-line-clamp: 2;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+            .line-clamp-3 {
+                display: -webkit-box;
+                -webkit-line-clamp: 3;
+                -webkit-box-orient: vertical;
+                overflow: hidden;
+            }
+            .grace-gradient {
+                background: linear-gradient(135deg, #667eea, #764ba2, #f093fb, #f5576c);
+            }
+        }
+        .loading-spinner {
+            border: 4px solid rgba(0, 0, 0, 0.1);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border-left-color: #09f;
+            animation: spin 1s ease infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .bottom-nav-item {
+            @apply flex flex-col items-center justify-center w-full text-gray-500 hover:text-purple-600 transition-colors duration-200;
+        }
+        .bottom-nav-item.active {
+            @apply text-purple-600;
+        }
+        .post-input {
+            @apply w-full bg-gray-100 rounded-full px-4 py-2 text-gray-600 cursor-pointer hover:bg-gray-200 text-left resize-none;
+        }
+        .post-input:focus {
+            @apply outline-none ring-2 ring-purple-500 bg-white;
+        }
+        .user-post-card {
+            @apply bg-white rounded-lg shadow p-4 mb-4 transition-all duration-200 hover:shadow-md;
+        }
+        /* Enhanced heart animations */
+        .heart-animate {
+            animation: heart-pulse 0.7s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        @keyframes heart-pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.4); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Floating hearts container */
+        #floating-hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+        
+        /* CSS floating hearts fallback */
+        .floating-heart {
+            position: absolute;
+            color: #ff4757;
+            font-size: 24px;
+            pointer-events: none;
+            z-index: 1000;
+            animation: float-up 3s ease-out forwards;
+        }
+        
+        @keyframes float-up {
+            0% {
+                transform: translateY(0) scale(0.5) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-300px) scale(1.2) rotate(360deg);
+                opacity: 0;
+            }
+        }
+        
+        /* Like button enhanced styles */
+        .like-button {
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        
+        .like-button:hover {
+            transform: scale(1.1);
+        }
+        
+        .like-button.liked {
+            color: #ff4757;
+        }
+        
+        .like-button.liked i {
+            animation: heart-beat 0.6s ease-in-out;
+        }
+        
+        @keyframes heart-beat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+        }
+        
+        /* Mentor badge styles */
+        .mentor-badge {
+            @apply bg-gradient-to-r from-purple-500 to-pink-500 text-white text-xs px-2 py-1 rounded-full font-semibold;
+        }
+        
+        .student-badge {
+            @apply bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-xs px-2 py-1 rounded-full font-semibold;
+        }
+        
+        .teacher-badge {
+            @apply bg-gradient-to-r from-green-500 to-emerald-500 text-white text-xs px-2 py-1 rounded-full font-semibold;
+        }
+        
+        .professional-badge {
+            @apply bg-gradient-to-r from-indigo-500 to-purple-500 text-white text-xs px-2 py-1 rounded-full font-semibold;
+        }
+        
+        /* Dark mode adaptations */
+        [data-theme="dark"] .social-media-card {
+            background-color: var(--bg-secondary) !important;
+            border: 1px solid var(--border-color);
+        }
+        
+        [data-theme="dark"] .user-post-card {
+            background-color: var(--bg-secondary) !important;
+            border: 1px solid var(--border-color);
+        }
+        
+        [data-theme="dark"] .bg-white {
+            background-color: var(--bg-primary) !important;
+        }
+        
+        [data-theme="dark"] .text-gray-800 {
+            color: var(--text-primary) !important;
+        }
+        
+        [data-theme="dark"] .text-gray-600 {
+            color: var(--text-secondary) !important;
+        }
+        
+        [data-theme="dark"] .text-gray-500 {
+            color: var(--text-tertiary) !important;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 mobile-container">
+    <!-- Floating Hearts Container -->
+    <div id="floating-hearts-container"></div>
+
+    <!-- Navigation -->
+    <nav class="bg-white shadow-md sticky top-0 z-10">
+        <div class="max-w-xl mx-auto px-4">
+            <div class="flex justify-between items-center h-16">
+                <!-- Title -->
+                <div id="nav-title" class="flex items-center">
+                    <a href="index.html" class="flex items-center">
+                        <div class="bg-gradient-to-r from-purple-400 to-pink-400 rounded-full p-2 mr-3">
+                            <i class="fas fa-graduation-cap text-white text-xl"></i>
+                        </div>
+                        <span class="font-bold text-3xl text-purple-800">Grace Academy</span>
+                    </a>
+                </div>
+
+                <!-- Search Bar -->
+                <div id="search-bar-container" class="hidden flex-1 items-center">
+                    <button id="search-back-btn" class="text-gray-600 hover:text-purple-600 mr-2">
+                        <i class="fas fa-arrow-left text-xl"></i>
+                    </button>
+                    <input type="text" id="search-input" placeholder="Search Grace Academy..." class="w-full bg-gray-100 rounded-full h-10 px-4 focus:outline-none focus:ring-2 focus:ring-purple-500">
+                </div>
+
+                <!-- Action Icons -->
+                <div id="nav-actions" class="flex items-center space-x-2">
+                    <!-- My Posts Button (shown when authenticated) -->
+                    <button id="my-posts-btn" class="hidden w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center text-purple-600 hover:bg-purple-200 transition-colors duration-200" title="My Posts">
+                        <i class="fas fa-user-edit"></i>
+                    </button>
+                    <button id="search-action-btn" class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-gray-600 hover:bg-gray-300">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button class="w-10 h-10 bg-gray-200 rounded-full flex items-center justify-center text-gray-600 hover:bg-gray-300">
+                        <i class="fas fa-comments"></i>
+                    </button>
+                    <!-- Google Sign-In Button -->
+                    <div id="google-signin-container" class="flex">
+                        <div id="g_id_onload"
+                             data-client_id="1035677099348-29l40i0ghmod0tmfb6fl5od60r32uqka.apps.googleusercontent.com"
+                             data-callback="handleCredentialResponse"
+                             data-auto_prompt="false">
+                        </div>
+                        <div class="g_id_signin" 
+                             data-type="standard" 
+                             data-size="medium" 
+                             data-theme="outline" 
+                             data-text="sign_in_with" 
+                             data-shape="rectangular" 
+                             data-logo_alignment="left">
+                        </div>
+                    </div>
+                    <!-- User Avatar (shown when logged in) -->
+                    <div id="user-avatar-container" class="hidden">
+                        <img id="user-avatar-nav" class="w-10 h-10 rounded-full cursor-pointer" src="" alt="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-xl mx-auto px-4 py-6 pb-24">
+
+        <!-- "What's on your mind?" -->
+        <div class="bg-white rounded-lg shadow p-4 mb-6">
+            <div class="flex items-center space-x-3">
+                <img id="userAvatar" class="h-10 w-10 rounded-full" src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="">
+                <div class="flex-1">
+                    <div id="post-input-container" class="w-full bg-gray-100 rounded-full px-4 py-2 text-gray-600 cursor-pointer hover:bg-gray-200 text-left">
+                        Share your dental journey, ask questions, or celebrate achievements!
+                    </div>
+                    <div id="post-form-container" class="hidden">
+                        <textarea id="post-content" placeholder="Share your thoughts about dental assisting, ask questions, or celebrate your achievements!" class="post-input" rows="3" maxlength="500"></textarea>
+                        <div class="flex justify-between items-center mt-3">
+                            <div class="flex space-x-2">
+                                <button class="text-purple-500 hover:text-purple-700">
+                                    <i class="fas fa-image"></i>
+                                </button>
+                                <button id="emoji-button" class="text-purple-500 hover:text-purple-700">
+                                    <i class="fas fa-smile"></i>
+                                </button>
+                            </div>
+                            <div class="flex space-x-2">
+                                <button id="cancel-post" class="px-4 py-2 text-gray-600 hover:text-gray-800">Cancel</button>
+                                <button id="submit-post" class="px-4 py-2 bg-purple-500 text-white rounded-full hover:bg-purple-600 disabled:opacity-50 disabled:cursor-not-allowed">Post</button>
+                            </div>
+                        </div>
+                        <div id="char-count" class="text-xs text-gray-500 text-right mt-1">0/500</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Academy Feed Header -->
+        <div class="rounded-lg shadow p-6 mb-6 text-center text-white grace-gradient">
+            <div class="flex justify-center mb-4">
+                <div class="bg-white/20 backdrop-blur-sm rounded-full p-4">
+                    <i class="fas fa-graduation-cap text-4xl"></i>
+                </div>
+            </div>
+            <h2 class="text-2xl font-bold mb-2">Grace Academy Feed</h2>
+            <p>Stay connected with the dental community, get the latest news, and find mentorship opportunities.</p>
+        </div>
+
+        <!-- Stories -->
+        <div class="bg-white rounded-lg shadow p-4 mb-6">
+            <h2 class="font-bold text-lg text-purple-800 mb-4">Trending Topics 🦷</h2>
+            <div id="trending-news-container" class="flex space-x-4 overflow-x-auto pb-2">
+                <!-- Placeholder for stories -->
+                <div class="flex-shrink-0 w-28 text-center">
+                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-blue-400 to-purple-500 rounded-full flex items-center justify-center">
+                        <i class="fas fa-tooth text-white text-2xl"></i>
+                    </div>
+                    <p class="text-sm mt-2 truncate">Dental News</p>
+                </div>
+                <div class="flex-shrink-0 w-28 text-center">
+                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-green-400 to-blue-500 rounded-full flex items-center justify-center">
+                        <i class="fas fa-briefcase text-white text-2xl"></i>
+                    </div>
+                    <p class="text-sm mt-2 truncate">Job Openings</p>
+                </div>
+                <div class="flex-shrink-0 w-28 text-center">
+                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-pink-400 to-red-500 rounded-full flex items-center justify-center">
+                        <i class="fas fa-user-graduate text-white text-2xl"></i>
+                    </div>
+                    <p class="text-sm mt-2 truncate">Student Success</p>
+                </div>
+                <div class="flex-shrink-0 w-28 text-center">
+                    <div class="w-20 h-20 mx-auto bg-gradient-to-br from-yellow-400 to-orange-500 rounded-full flex items-center justify-center">
+                        <i class="fas fa-chalkboard-teacher text-white text-2xl"></i>
+                    </div>
+                    <p class="text-sm mt-2 truncate">Teacher Tips</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Feed -->
+        <div class="bg-white rounded-lg shadow p-4">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-bold text-purple-800">Academy Feed 🎓</h2>
+                <p id="last-updated" class="text-sm text-gray-500"></p>
+            </div>
+            <div id="news-container" class="space-y-4">
+                <!-- Feed posts will be loaded here -->
+                <div class="flex justify-center items-center h-48">
+                    <div class="loading-spinner"></div>
+                    <p class="ml-4 text-gray-600">Loading feed...</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Sign-in Popup Modal -->
+    <div id="signinModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-50 hidden">
+        <div class="bg-white rounded-xl shadow-lg w-full max-w-md p-6 relative">
+            <button id="closeSigninModal" class="absolute top-3 right-3 text-gray-400 hover:text-gray-700">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+            <div class="text-center">
+                <div class="mb-6">
+                    <div class="bg-gradient-to-r from-purple-400 to-pink-400 rounded-full p-4 w-16 h-16 mx-auto mb-4 flex items-center justify-center">
+                        <i class="fas fa-graduation-cap text-white text-2xl"></i>
+                    </div>
+                    <h2 class="text-2xl font-bold text-purple-800 mb-2">Welcome to Grace Academy!</h2>
+                    <p class="text-gray-600">Sign in to access your personalized feed, connect with mentors, and share your dental journey.</p>
+                </div>
+                <div id="google-signin-modal-container" class="flex justify-center">
+                    <div id="g_id_onload_modal"
+                         data-client_id="1035677099348-29l40i0ghmod0tmfb6fl5od60r32uqka.apps.googleusercontent.com"
+                         data-callback="handleCredentialResponse"
+                         data-auto_prompt="false">
+                    </div>
+                    <div class="g_id_signin" 
+                         data-type="standard" 
+                         data-size="large" 
+                         data-theme="filled_blue" 
+                         data-text="sign_in_with" 
+                         data-shape="rectangular" 
+                         data-logo_alignment="center">
+                    </div>
+                </div>
+                <div class="mt-4">
+                    <button id="skipSigninBtn" class="text-gray-500 hover:text-gray-700 text-sm">Continue as Guest</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom Comment Modal -->
+    <div id="commentModal" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40 hidden">
+        <div class="bg-white rounded-xl shadow-lg w-full max-w-md p-6 relative">
+            <button id="closeCommentModal" class="absolute top-3 right-3 text-gray-400 hover:text-gray-700">
+                <i class="fas fa-times text-xl"></i>
+            </button>
+            <h2 class="text-xl font-bold text-purple-800 mb-2">Add a Comment</h2>
+            <div id="commentListContainer" class="mb-4 max-h-48 overflow-y-auto"></div>
+            <form id="commentForm" class="space-y-3">
+                <textarea id="commentInput" maxlength="200" rows="3" class="w-full border rounded-lg p-3 focus:outline-none focus:ring-2 focus:ring-purple-400 resize-none" placeholder="Write your comment (max 200 characters)..."></textarea>
+                <div class="flex justify-between items-center text-xs text-gray-500">
+                    <span id="commentCharCount">0/200</span>
+                    <span id="commentNameFieldContainer" class="hidden">
+                        <input id="commentNameField" type="text" maxlength="20" class="border rounded px-2 py-1 text-xs" placeholder="Your name (optional)">
+                    </span>
+                </div>
+                <div class="flex justify-end space-x-2 mt-2">
+                    <button type="button" id="cancelCommentBtn" class="px-4 py-2 rounded bg-gray-200 text-gray-700 hover:bg-gray-300">Cancel</button>
+                    <button type="submit" id="submitCommentBtn" class="px-4 py-2 rounded bg-purple-600 text-white font-semibold hover:bg-purple-700 disabled:opacity-50 disabled:cursor-not-allowed">Post</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Bottom Navigation -->
+    <nav class="fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 shadow-[0_-1px_3px_rgba(0,0,0,0.05)] z-20">
+        <div class="max-w-xl mx-auto flex justify-around h-16">
+            <a href="index.html" class="bottom-nav-item">
+                <i class="fas fa-home text-2xl"></i>
+            </a>
+            <a href="feed.html" class="bottom-nav-item active">
+                <i class="fas fa-newspaper text-2xl"></i>
+            </a>
+            <a href="#" class="bottom-nav-item">
+                <i class="fas fa-heart text-2xl"></i>
+            </a>
+            <a href="#" id="notificationsBtnBottom" class="bottom-nav-item relative">
+                <i class="fas fa-bell text-2xl"></i>
+                <span id="notificationDotBottom" class="absolute top-1 right-1/2 transform translate-x-3 w-2 h-2 bg-red-500 rounded-full hidden"></span>
+            </a>
+            <a href="#" id="menuBtn" class="bottom-nav-item">
+                <i class="fas fa-bars text-2xl"></i>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Menu/Sidebar Panel -->
+    <div id="menuOverlay" class="fixed inset-0 bg-black bg-opacity-50 z-30 hidden"></div>
+    <div id="menuPanel" class="fixed top-0 left-0 h-full w-72 bg-white shadow-lg transform -translate-x-full transition-transform duration-300 ease-in-out z-40">
+        <div class="p-4">
+             <button id="closeMenuBtn" class="absolute top-4 right-4 text-gray-500 hover:text-gray-800">
+                <i class="fas fa-times text-2xl"></i>
+            </button>
+            <h2 class="font-bold text-xl text-purple-800 mb-6 mt-2">Menu</h2>
+            
+            <div class="flex items-center mb-6">
+                <img id="userAvatarMenu" class="h-12 w-12 rounded-full" src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="">
+                <span id="userNameMenu" class="ml-3 font-semibold text-lg">Guest</span>
+            </div>
+
+            <h3 class="font-bold text-lg text-purple-800 mb-4">Feed Categories 🦷</h3>
+            <ul id="news-sources-list" class="space-y-2 mb-6">
+                <li><a href="#" data-source="all" class="news-source-link source-all flex items-center active"><i class="fas fa-globe w-6"></i><span>All Posts</span></a></li>
+                <li><a href="#" data-source="dental-news" class="news-source-link source-dental-news flex items-center"><i class="fas fa-tooth w-6"></i><span>Dental News</span></a></li>
+                <li><a href="#" data-source="medical-news" class="news-source-link source-medical-news flex items-center"><i class="fas fa-stethoscope w-6"></i><span>Medical News</span></a></li>
+                <li><a href="#" data-source="job-board" class="news-source-link source-job-board flex items-center"><i class="fas fa-briefcase w-6"></i><span>Job Board</span></a></li>
+                <li><a href="#" data-source="student-posts" class="news-source-link source-student-post flex items-center"><i class="fas fa-user-graduate w-6"></i><span>Student Posts</span></a></li>
+                <li><a href="#" data-source="teacher-posts" class="news-source-link source-teacher-post flex items-center"><i class="fas fa-chalkboard-teacher w-6"></i><span>Teacher Posts</span></a></li>
+                <li><a href="#" data-source="professional-posts" class="news-source-link source-professional-post flex items-center"><i class="fas fa-user-md w-6"></i><span>Professional Posts</span></a></li>
+            </ul>
+            
+            <h3 class="font-bold text-lg text-purple-800 mb-4">Academy Services 🏥</h3>
+            <ul id="services-list" class="space-y-2">
+                <li><a href="#" data-service="mentorship" class="news-source-link source-default flex items-center"><i class="fas fa-hands-helping w-6"></i><span>Mentorship</span></a></li>
+                <li><a href="#" data-service="career-services" class="news-source-link source-default flex items-center"><i class="fas fa-briefcase w-6"></i><span>Career Services</span></a></li>
+                <li><a href="#" data-service="study-groups" class="news-source-link source-default flex items-center"><i class="fas fa-users w-6"></i><span>Study Groups</span></a></li>
+                <li><a href="#" data-service="networking" class="news-source-link source-default flex items-center"><i class="fas fa-network-wired w-6"></i><span>Networking</span></a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js" type="module"></script>
+    <script src="./assets/js/feed.js"></script>
+</body>
+</html>

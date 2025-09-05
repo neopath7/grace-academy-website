@@ -271,23 +271,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // Navigation functions (similar to PeThoria Match)
 function goToSignup() {
-    // Check if user is already logged in
-    if (localStorage.getItem('grace-token')) {
-        window.location.href = 'dashboard.html';
-    } else {
-        window.location.href = 'signup.html';
-    }
+    // For now, redirect to a course search or application page
+    alert('Course search functionality coming soon! Please call (866) 706-6363 to find a course near you.');
 }
 
 function goToLogin() {
-    // Check if user is already logged in
-    if (localStorage.getItem('grace-token')) {
-        window.location.href = 'dashboard.html';
-    } else {
-        // Clear any existing redirect and ensure we go to dashboard after login
-        localStorage.removeItem('redirectAfterLogin');
-        window.location.href = 'login.html';
-    }
+    // For now, redirect to student portal or show login info
+    alert('Student login portal coming soon! Please call (866) 706-6363 for assistance.');
 }
 
 function goToFoundation() {

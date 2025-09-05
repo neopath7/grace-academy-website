@@ -6,6 +6,8 @@
     overflow-x: hidden;
     background-color: var(--bg-primary, #ffffff);
     color: var(--text-primary, #1f2937);
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
 }
 
 .mobile-nav {
@@ -54,6 +56,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 /* Button Styles */
@@ -72,14 +76,14 @@
 }
 
 .btn-primary {
-    background: linear-gradient(45deg, #667eea, #764ba2);
+    background: linear-gradient(45deg, #20b2aa, #ff6b6b);
     color: white;
-    box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    box-shadow: 0 4px 15px rgba(32, 178, 170, 0.3);
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(102, 126, 234, 0.4);
+    box-shadow: 0 8px 25px rgba(32, 178, 170, 0.4);
 }
 
 .btn-secondary {
@@ -91,6 +95,35 @@
 .btn-secondary:hover {
     background: currentColor;
     color: white;
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 768px) {
+    * {
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    body {
+        -webkit-text-size-adjust: 100%;
+        -ms-text-size-adjust: 100%;
+    }
+    
+    .mobile-container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+    
+    .mobile-content {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+    
+    .mobile-content > section {
+        margin-left: -1rem;
+        margin-right: -1rem;
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
 }
 
 /* Custom scrollbar */

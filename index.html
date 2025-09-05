@@ -20,13 +20,19 @@
             theme: {
                 extend: {
                     colors: {
+                        'turquoise': '#20b2aa',
+                        'turquoise-light': '#40e0d0',
+                        'turquoise-dark': '#008b8b',
+                        'coral-red': '#ff6b6b',
+                        'coral-red-light': '#ff8e8e',
+                        'coral-red-dark': '#e55353',
                         'grace-orange': '#f49076',
-                        'grace-mint': '#64e2ca',
-                        'grace-blue': '#2c9af5',
-                        'grace-yellow': '#fdc468',
-                        'grace-navy': '#032b49',
-                        'grace-purple': '#8b5cf6',
-                        'grace-pink': '#ec4899',
+                        'grace-mint': '#20b2aa',
+                        'grace-blue': '#20b2aa',
+                        'grace-yellow': '#ff6b6b',
+                        'grace-navy': '#008b8b',
+                        'grace-purple': '#20b2aa',
+                        'grace-pink': '#ff6b6b',
                     },
                     fontFamily: {
                         'poppins': ['Poppins', 'sans-serif'],
@@ -121,7 +127,7 @@
         }
 
         .hero-gradient {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #20b2aa 0%, #ff6b6b 100%);
         }
         
         .feature-card {
@@ -151,7 +157,7 @@
         }
         
         .gradient-text {
-            background: linear-gradient(45deg, #667eea, #764ba2, #f093fb, #f5576c);
+            background: linear-gradient(45deg, #20b2aa, #ff6b6b, #40e0d0, #ff8e8e);
             background-size: 300% 300%;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -242,6 +248,35 @@
             .hero-gradient {
                 padding: 2rem 0;
             }
+
+            .mobile-nav-title {
+                font-size: 1.25rem;
+            }
+
+            .mobile-nav {
+                padding: 0.75rem 1rem;
+            }
+
+            .mobile-nav-actions {
+                gap: 0.5rem;
+            }
+
+            .mobile-nav-actions button {
+                padding: 0.5rem 0.75rem;
+                font-size: 0.875rem;
+            }
+
+            .testimonial-card {
+                padding: 1rem;
+            }
+
+            .feature-card {
+                padding: 1.5rem;
+            }
+
+            .mobile-grid-2 {
+                gap: 0.75rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -252,6 +287,47 @@
             .stats-counter {
                 font-size: 1.75rem;
             }
+
+            .mobile-nav-title {
+                font-size: 1.125rem;
+            }
+
+            .mobile-nav {
+                padding: 0.5rem 0.75rem;
+            }
+
+            .mobile-nav-actions button {
+                padding: 0.375rem 0.5rem;
+                font-size: 0.75rem;
+                min-height: 36px;
+            }
+
+            .hero-gradient h1 {
+                font-size: 2rem;
+                line-height: 1.2;
+            }
+
+            .hero-gradient p {
+                font-size: 1rem;
+            }
+
+            .mobile-grid-2 {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+
+            .testimonial-card {
+                padding: 0.75rem;
+            }
+
+            .feature-card {
+                padding: 1rem;
+            }
+
+            .btn {
+                padding: 0.625rem 1rem;
+                font-size: 0.875rem;
+            }
         }
     </style>
 </head>
@@ -259,32 +335,43 @@
     <!-- Header -->
     <header class="mobile-nav">
         <div class="flex items-center space-x-3">
-            <div class="bg-gradient-to-r from-purple-400 to-pink-400 rounded-full p-2">
+            <div class="bg-gradient-to-r from-turquoise to-coral-red rounded-full p-2">
                 <i class="fas fa-graduation-cap text-white text-xl"></i>
             </div>
             <h1 class="mobile-nav-title gradient-text">Grace Academy</h1>
         </div>
         
         <nav class="hidden md:flex space-x-6">
-            <a href="#features" class="text-gray-700 hover:text-purple-600 transition-colors tap-target">Features</a>
-            <a href="#program" class="text-gray-700 hover:text-purple-600 transition-colors tap-target">Program</a>
-            <a href="#how-it-works" class="text-gray-700 hover:text-purple-600 transition-colors tap-target">How It Works</a>
-            <a href="#testimonials" class="text-gray-700 hover:text-purple-600 transition-colors tap-target">Reviews</a>
-            <a href="feed.html" class="text-gray-700 hover:text-purple-600 transition-colors tap-target">Academy Feed</a>
-            <a href="#contact" class="text-gray-700 hover:text-purple-600 transition-colors tap-target">Contact</a>
+            <a href="#features" class="text-gray-700 hover:text-turquoise transition-colors tap-target">Features</a>
+            <a href="#program" class="text-gray-700 hover:text-turquoise transition-colors tap-target">Program</a>
+            <a href="#how-it-works" class="text-gray-700 hover:text-turquoise transition-colors tap-target">How It Works</a>
+            <a href="#testimonials" class="text-gray-700 hover:text-turquoise transition-colors tap-target">Reviews</a>
+            <a href="feed.html" class="text-gray-700 hover:text-turquoise transition-colors tap-target">Academy Feed</a>
+            <a href="#contact" class="text-gray-700 hover:text-turquoise transition-colors tap-target">Contact</a>
         </nav>
         
-        <div class="mobile-nav-actions">
-            <button onclick="goToLogin()" class="text-purple-600 hover:text-purple-800 font-medium transition-colors tap-target mr-3">
+        <div class="mobile-nav-actions flex items-center gap-2">
+            <button onclick="goToLogin()" class="text-turquoise hover:text-turquoise-dark font-medium transition-colors tap-target">
                 <span class="hidden sm:inline">Sign In</span>
                 <span class="sm:hidden"><i class="fas fa-sign-in-alt"></i></span>
             </button>
-            <button onclick="goToSignup()" class="btn btn-primary !py-2 !px-4 !min-h-[40px]">
+            <button onclick="goToSignup()" class="btn btn-primary !py-2 !px-3 sm:!px-4 !min-h-[40px] !text-sm sm:!text-base">
                 <span class="hidden sm:inline">Get Started</span>
                 <span class="sm:hidden">Join</span>
             </button>
         </div>
     </header>
+
+    <!-- Enrollment Banner -->
+    <div class="bg-gradient-to-r from-turquoise to-coral-red text-white py-2 sm:py-3 px-3 sm:px-4 text-center">
+        <p class="text-xs sm:text-sm md:text-base leading-tight">
+            <strong class="block sm:inline">Now Enrolling for Fall 2025 Courses</strong>
+            <span class="hidden sm:inline"> - </span>
+            <span class="block sm:inline">Flexible payment plans available</span><br class="sm:hidden">
+            <a href="tel:(866)706-6363" class="underline hover:text-coral-red-light transition-colors text-xs sm:text-sm">Find a course near you</a> • 
+            <a href="tel:(866)706-6363" class="underline hover:text-coral-red-light transition-colors text-xs sm:text-sm">(866) 706-6363</a>
+        </p>
+    </div>
 
     <!-- Mobile Content -->
     <div class="mobile-content">
@@ -294,35 +381,35 @@
             <div class="max-w-7xl mx-auto">
                 <div class="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
                     <div class="slide-in text-center lg:text-left">
-                        <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
-                            Find Your Perfect
-                            <span class="block text-yellow-300">Career Match! 🎓</span>
+                        <h1 class="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
+                            Invest in your future with 
+                            <span class="block text-coral-red">dental assisting 🦷</span>
                         </h1>
-                        <p class="text-lg sm:text-xl mb-8 text-purple-100">
-                            Connect with dental assistant training programs in your area. Swipe, match, and create an amazing career that lasts a lifetime!
+                        <p class="text-base sm:text-lg md:text-xl mb-6 sm:mb-8 text-teal-100 leading-relaxed">
+                            This isn't just a dream—it's a proven path. With over 15,500 graduates and a 98.3% graduation rate, you can move forward with confidence and invest in your future. Start your new career with our hybrid 10-week dental assisting course today!
                         </p>
                         
-                        <div class="mobile-grid sm:mobile-grid-2 lg:flex lg:space-x-4 mb-8">
-                            <button onclick="goToMatching()" class="btn btn-primary bg-white text-pink-500 hover:bg-pink-50 !text-base">
-                                <i class="fas fa-heart mr-2"></i>Start Matching
+                        <div class="mobile-grid sm:mobile-grid-2 lg:flex lg:space-x-4 mb-6 sm:mb-8 gap-3 sm:gap-4">
+                            <button onclick="goToSignup()" class="btn btn-primary bg-white text-turquoise hover:bg-teal-50 !text-sm sm:!text-base !py-3 sm:!py-4">
+                                <i class="fas fa-search mr-1 sm:mr-2"></i>Find a Course
                             </button>
-                            <button onclick="goToFoundation()" class="btn btn-secondary border-2 border-white text-white hover:bg-white hover:text-pink-500 !text-base">
-                                <i class="fas fa-graduation-cap mr-2"></i>View Programs
+                            <button onclick="goToLogin()" class="btn btn-secondary border-2 border-white text-white hover:bg-white hover:text-turquoise !text-sm sm:!text-base !py-3 sm:!py-4">
+                                <i class="fas fa-sign-in-alt mr-1 sm:mr-2"></i>Student Login
                             </button>
                         </div>
                         
-                        <div class="mobile-grid-2 sm:flex sm:space-x-8 sm:justify-center lg:justify-start">
+                        <div class="mobile-grid-2 sm:flex sm:space-x-6 md:space-x-8 sm:justify-center lg:justify-start gap-4 sm:gap-0">
                             <div class="text-center">
-                                <div class="stats-counter text-white">15.5K+</div>
-                                <div class="text-purple-200 text-sm">Graduates</div>
+                                <div class="stats-counter text-white text-xl sm:text-2xl md:text-3xl">15.5K+</div>
+                                <div class="text-teal-200 text-xs sm:text-sm">Graduates</div>
                             </div>
                             <div class="text-center">
-                                <div class="stats-counter text-white">98.3%</div>
-                                <div class="text-purple-200 text-sm">Success Rate</div>
+                                <div class="stats-counter text-white text-xl sm:text-2xl md:text-3xl">98.3%</div>
+                                <div class="text-teal-200 text-xs sm:text-sm">Graduation Rate</div>
                             </div>
                             <div class="text-center">
-                                <div class="stats-counter text-white">10</div>
-                                <div class="text-purple-200 text-sm">Week Program</div>
+                                <div class="stats-counter text-white text-xl sm:text-2xl md:text-3xl">10</div>
+                                <div class="text-teal-200 text-xs sm:text-sm">Week Program</div>
                             </div>
                         </div>
                     </div>
@@ -336,12 +423,58 @@
             </div>
         </section>
 
+        <!-- Sub-Hero Section -->
+        <section class="py-12 sm:py-20">
+            <div class="max-w-7xl mx-auto text-center">
+                <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-6">Your new career is closer than you think.</h2>
+                <p class="text-lg sm:text-xl text-gray-600 mb-8 max-w-4xl mx-auto">
+                    We understand that getting an education can feel overwhelming. We designed our dental assisting courses to equip you to confidently start your new career in as little as 10 weeks. Our interest-free payment plans allow you to get a quality education while ensuring that you graduate debt free. It's never been easier or more affordable to invest in your future!
+                </p>
+                <button onclick="goToSignup()" class="btn btn-primary">
+                    <i class="fas fa-calendar-alt mr-2"></i>Find Dates & Tuition
+                </button>
+            </div>
+        </section>
+
+        <!-- Course Search Section -->
+        <section class="py-12 sm:py-20 bg-gradient-to-br from-teal-50 to-cyan-50 -mx-4 px-4">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-8">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Browse available courses</h2>
+                    <p class="text-lg sm:text-xl text-gray-600">With locations nationwide, find a course near you that works with your schedule.</p>
+                </div>
+                
+                <div class="bg-white rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 md:p-8 max-w-2xl mx-auto">
+                    <form class="space-y-3 sm:space-y-4">
+                        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                            <div class="flex-1">
+                                <input type="text" placeholder="Zip Code" class="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-turquoise focus:border-transparent text-sm sm:text-base">
+                            </div>
+                            <div class="flex-1">
+                                <select class="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-turquoise focus:border-transparent text-sm sm:text-base">
+                                    <option value="Dental Assistant">Dental Assistant</option>
+                                </select>
+                            </div>
+                            <div class="flex-1">
+                                <select class="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-turquoise focus:border-transparent text-sm sm:text-base">
+                                    <option value="100">100 Miles</option>
+                                </select>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary w-full sm:w-auto !py-2 sm:!py-3 !text-sm sm:!text-base">
+                            <i class="fas fa-search mr-1 sm:mr-2"></i>Find My Course
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
         <!-- Features Section -->
         <section id="features" class="py-12 sm:py-20">
             <div class="max-w-7xl mx-auto">
                 <div class="text-center mb-12 sm:mb-16">
-                    <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Amazing Features</h2>
-                    <p class="text-lg sm:text-xl text-gray-600">Everything you need to launch your dental assistant career</p>
+                    <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">See what makes it affordable</h2>
+                    <p class="text-lg sm:text-xl text-gray-600">Flexible payment options designed to fit your budget</p>
                 </div>
                 
                 <div class="mobile-grid sm:grid-cols-2 lg:grid-cols-3">
@@ -531,8 +664,8 @@
                     <p class="text-lg sm:text-xl text-purple-100">Real stories from our successful graduates</p>
                 </div>
                 
-                <div class="mobile-grid md:grid-cols-3">
-                    <div class="testimonial-card p-6 sm:p-8 rounded-2xl text-white">
+                <div class="mobile-grid md:grid-cols-3 gap-4 sm:gap-6">
+                    <div class="testimonial-card p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl text-white">
                         <div class="flex items-center mb-4">
                             <img src="https://images.unsplash.com/photo-1494790108755-2616b612b786?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Destiny" class="w-12 h-12 rounded-full mr-4">
                             <div>
@@ -540,10 +673,10 @@
                                 <div class="text-yellow-300">★★★★★</div>
                             </div>
                         </div>
-                        <p class="text-purple-100">"Grace Academy helped me find my dream career! The 10-week program was intense but so worth it. I got hired before I even graduated!"</p>
+                        <p class="text-teal-100">"I had such an amazing learning experience! I loved the teachers and the class! I walked into a class and left with a family."</p>
                     </div>
                     
-                    <div class="testimonial-card p-6 sm:p-8 rounded-2xl text-white">
+                    <div class="testimonial-card p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl text-white">
                         <div class="flex items-center mb-4">
                             <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Mariah" class="w-12 h-12 rounded-full mr-4">
                             <div>
@@ -551,10 +684,10 @@
                                 <div class="text-yellow-300">★★★★★</div>
                             </div>
                         </div>
-                        <p class="text-purple-100">"The flexible payment plans made it possible for me to pursue my career goals. Now I'm working at an amazing dental office!"</p>
+                        <p class="text-teal-100">"If you have been wondering how to take your next step, Grace Academy is the answer. When I found Grace Academy, I knew this was the path for me. One thing I enjoyed about the program was their desire to see their students succeed. The instructors gave me confidence and proved to me that I had what it takes to succeed, so much so that I was able to find a job a week BEFORE graduating!"</p>
                     </div>
                     
-                    <div class="testimonial-card p-6 sm:p-8 rounded-2xl text-white">
+                    <div class="testimonial-card p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl text-white">
                         <div class="flex items-center mb-4">
                             <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Alexis" class="w-12 h-12 rounded-full mr-4">
                             <div>
@@ -562,83 +695,91 @@
                                 <div class="text-yellow-300">★★★★★</div>
                             </div>
                         </div>
-                        <p class="text-purple-100">"The instructors were amazing and the career services team helped me land my perfect job. I couldn't be happier with my decision!"</p>
+                        <p class="text-teal-100">"I can honestly say this program is the best decision I made for my career! All advisors encourage you to achieve your goals and genuinely care about your success. The small classes allow you to get the hands-on practice you need, and you will meet life-long friends throughout the 10 weeks. 10/10 would recommend it!"</p>
+                    </div>
+                    
+                    <!-- Additional Testimonials -->
+                    <div class="testimonial-card p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl text-white">
+                        <div class="flex items-center mb-4">
+                            <img src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Angela" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <h4 class="font-bold">Angela Norvill</h4>
+                                <div class="text-yellow-300">★★★★★</div>
+                            </div>
+                        </div>
+                        <p class="text-teal-100">"I am currently working at Lakeside Family Dental for a year now as office manager. I help with assisting now as well as PRN and have received a raise due to the accelerated dental course. I was an assistant 30+ years ago and took the course to brush up on skills and for certifications."</p>
+                    </div>
+                    
+                    <div class="testimonial-card p-4 sm:p-6 md:p-8 rounded-xl sm:rounded-2xl text-white">
+                        <div class="flex items-center mb-4">
+                            <img src="https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=100&q=80" alt="Mary Katherine" class="w-12 h-12 rounded-full mr-4">
+                            <div>
+                                <h4 class="font-bold">Mary Katherine Peavey</h4>
+                                <div class="text-yellow-300">★★★★★</div>
+                            </div>
+                        </div>
+                        <p class="text-teal-100">"This was the best decision I have made so far! I changed my life in just 10 weeks and accepted my new job just 2 weeks after I graduated! I have no student debt to stress about and the payment plans helped me out so much. I learned so much in a short amount of time and I would highly recommend Grace Academy!"</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why Choose Grace Academy Section -->
+        <section id="why-choose" class="py-12 sm:py-20">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-12 sm:mb-16">
+                    <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Why choose Grace Academy?</h2>
+                </div>
+                
+                <div class="mobile-grid md:grid-cols-3">
+                    <div class="text-center">
+                        <div class="bg-gradient-to-r from-turquoise to-coral-red rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-graduation-cap text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">98.3% Graduation Rate</h3>
+                        <p class="text-gray-600">Our dental assisting courses are convenient and achievable. From enrollment to graduation, your success is our priority.</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="bg-gradient-to-r from-coral-red to-turquoise rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-users text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Over 6,000 students hired</h3>
+                        <p class="text-gray-600">Our career services team helps you with interview and resume prep. Finding a job is your goal and our mission.</p>
+                    </div>
+                    
+                    <div class="text-center">
+                        <div class="bg-gradient-to-r from-turquoise-dark to-coral-red-dark rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
+                            <i class="fas fa-handshake text-white text-3xl"></i>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-4">Trusted by 673 Industry Professionals</h3>
+                        <p class="text-gray-600">Our committed relationships with our industry partners truly set Grace Academy apart.</p>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- CTA Section -->
-        <section class="py-12 sm:py-20 bg-gradient-to-r from-pink-500 to-purple-600 -mx-4 px-4">
+        <section class="py-12 sm:py-20 bg-gradient-to-r from-turquoise to-coral-red -mx-4 px-4">
             <div class="max-w-4xl mx-auto text-center">
                 <h2 class="text-3xl sm:text-4xl font-bold text-white mb-6">Ready to Start Your New Career?</h2>
-                <p class="text-lg sm:text-xl text-pink-100 mb-8">Join thousands of students who have already found their perfect career path!</p>
+                <p class="text-lg sm:text-xl text-teal-100 mb-8">Join thousands of students who have already found their perfect career path!</p>
                 
-                <div class="mobile-grid sm:mobile-grid-2 lg:flex lg:justify-center lg:space-x-4">
-                    <button onclick="goToMatching()" class="btn btn-primary bg-white text-pink-500 hover:bg-pink-50 !text-lg">
-                        <i class="fas fa-heart mr-2"></i>Start Your Journey
+                <div class="mobile-grid sm:mobile-grid-2 lg:flex lg:justify-center lg:space-x-4 gap-3 sm:gap-4">
+                    <button onclick="goToSignup()" class="btn btn-primary bg-white text-turquoise hover:bg-teal-50 !text-sm sm:!text-lg !py-3 sm:!py-4">
+                        <i class="fas fa-search mr-1 sm:mr-2"></i>Find a Course
                     </button>
-                    <button onclick="goToLogin()" class="btn btn-secondary border-2 border-white text-white hover:bg-white hover:text-pink-500 !text-lg">
-                        <i class="fas fa-sign-in-alt mr-2"></i>Sign In
+                    <button onclick="goToLogin()" class="btn btn-secondary border-2 border-white text-white hover:bg-white hover:text-turquoise !text-sm sm:!text-lg !py-3 sm:!py-4">
+                        <i class="fas fa-sign-in-alt mr-1 sm:mr-2"></i>Student Login
                     </button>
                 </div>
                 
-                <div class="mt-6 text-pink-100">
+                <div class="mt-6 text-teal-100">
                     <p>Free to apply • Flexible payments • 98.3% success rate</p>
                 </div>
             </div>
         </section>
 
-    <!-- Why Choose Us Section -->
-    <section class="py-20 bg-white">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-grace-navy mb-4">
-                    Why choose Grace Academy?
-                </h2>
-            </div>
-            
-            <div class="grid md:grid-cols-3 gap-8">
-                <div class="text-center group">
-                    <div class="bg-gradient-to-br from-grace-mint to-grace-blue rounded-2xl p-8 mb-6 group-hover:shadow-xl transition-all duration-300">
-                        <i class="fas fa-graduation-cap text-4xl text-white mb-4"></i>
-                        <h3 class="text-2xl font-bold text-white mb-4">
-                            <span class="counter" data-target="98.3">0</span>% Graduation Rate
-                        </h3>
-                        <p class="text-white/90">
-                            Our dental assisting courses are convenient and achievable. From enrollment to graduation, 
-                            your success is our priority.
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="text-center group">
-                    <div class="bg-gradient-to-br from-grace-blue to-grace-navy rounded-2xl p-8 mb-6 group-hover:shadow-xl transition-all duration-300">
-                        <i class="fas fa-briefcase text-4xl text-white mb-4"></i>
-                        <h3 class="text-2xl font-bold text-white mb-4">
-                            Over <span class="counter" data-target="6000">0</span> students hired
-                        </h3>
-                        <p class="text-white/90">
-                            Our career services team helps you with interview and resume prep. Finding a job is your 
-                            goal and our mission.
-                        </p>
-                    </div>
-                </div>
-                
-                <div class="text-center group">
-                    <div class="bg-gradient-to-br from-grace-yellow to-grace-orange rounded-2xl p-8 mb-6 group-hover:shadow-xl transition-all duration-300">
-                        <i class="fas fa-handshake text-4xl text-white mb-4"></i>
-                        <h3 class="text-2xl font-bold text-white mb-4">
-                            Trusted by <span class="counter" data-target="673">0</span> Industry Professionals
-                        </h3>
-                        <p class="text-white/90">
-                            Our committed relationships with our industry partners truly set Grace Academy apart.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
 
     <!-- Video CTA Section -->
     <section class="py-20 bg-gradient-to-r from-grace-navy to-grace-blue text-white">
@@ -663,7 +804,7 @@
                 <div class="mobile-grid sm:grid-cols-2 md:grid-cols-4">
                     <div class="mb-8 sm:mb-0">
                         <div class="flex items-center space-x-3 mb-4">
-                            <div class="bg-gradient-to-r from-purple-400 to-pink-400 rounded-full p-2">
+                            <div class="bg-gradient-to-r from-turquoise to-coral-red rounded-full p-2">
                                 <i class="fas fa-graduation-cap text-white text-xl"></i>
                             </div>
                             <h3 class="text-xl font-bold">Grace Academy</h3>
@@ -685,10 +826,12 @@
                     <div class="mb-6 sm:mb-0">
                         <h4 class="font-bold text-lg mb-4">Support</h4>
                         <ul class="space-y-2 text-gray-400">
-                            <li><a href="#" class="hover:text-white transition-colors tap-target">Help Center</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors tap-target">Tuition</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors tap-target">About</a></li>
                             <li><a href="#" class="hover:text-white transition-colors tap-target">Career Services</a></li>
-                            <li><a href="#contact" class="hover:text-white transition-colors tap-target">Contact Us</a></li>
-                            <li><a href="#" class="hover:text-white transition-colors tap-target">Privacy Policy</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors tap-target">Partnerships</a></li>
+                            <li><a href="#" class="hover:text-white transition-colors tap-target">Blog</a></li>
+                            <li><a href="#contact" class="hover:text-white transition-colors tap-target">Contact</a></li>
                         </ul>
                     </div>
                     
@@ -712,6 +855,10 @@
                 </div>
                 
                 <div class="border-t border-gray-800 mt-8 pt-8 text-center text-gray-400">
+                    <div class="mb-4">
+                        <a href="#" class="hover:text-white transition-colors tap-target mr-4">Terms & Conditions</a>
+                        <a href="tel:(866)702-1458" class="hover:text-white transition-colors tap-target">(866) 702-1458</a>
+                    </div>
                     <p>&copy; 2025 Grace Academy. All rights reserved. Made with <span class="pulse-heart text-red-500">❤️</span> for career changers everywhere.</p>
                 </div>
             </div>

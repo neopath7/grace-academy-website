@@ -88,7 +88,7 @@
 
 .btn-primary {
     background: linear-gradient(45deg, #20b2aa, #ff6b6b);
-    color: white;
+    color: #ff6b6b;
     box-shadow: 0 4px 15px rgba(32, 178, 170, 0.3);
 }
 

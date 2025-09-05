@@ -1,9 +1,9 @@
 // Grace Academy Website JavaScript - Social Media Style
 document.addEventListener('DOMContentLoaded', function() {
     
-    // Force dark mode on page load
-    document.documentElement.setAttribute('data-theme', 'dark');
-    localStorage.setItem('grace-academy-theme', 'dark');
+    // Set default theme to light mode
+    const savedTheme = localStorage.getItem('grace-academy-theme') || 'light';
+    document.documentElement.setAttribute('data-theme', savedTheme);
     
     // Theme toggle functionality
     function toggleTheme() {
@@ -27,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function() {
         if (navActions && !document.getElementById('theme-toggle')) {
             const themeToggle = document.createElement('button');
             themeToggle.id = 'theme-toggle';
-            themeToggle.className = 'text-purple-600 hover:text-purple-800 font-medium transition-colors tap-target mr-3';
+            themeToggle.className = 'text-turquoise hover:text-turquoise-dark font-medium transition-colors tap-target mr-3';
             themeToggle.innerHTML = '<i class="fas fa-sun"></i>';
             themeToggle.onclick = toggleTheme;
             
@@ -312,24 +312,67 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     });
 });
 
-// Add scroll animations
-const observerOptions = {
-    threshold: 0.1,
-    rootMargin: '0px 0px -50px 0px'
-};
-
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('slide-in');
+    // Mobile hamburger menu functionality
+    function initMobileMenu() {
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+        const mobileMenuOverlay = document.getElementById('mobile-menu-overlay');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        if (mobileMenuToggle && mobileMenuOverlay && mobileMenu) {
+            // Open mobile menu
+            mobileMenuToggle.addEventListener('click', () => {
+                mobileMenuOverlay.classList.remove('hidden');
+                setTimeout(() => {
+                    mobileMenu.classList.remove('translate-x-full');
+                }, 10);
+                document.body.style.overflow = 'hidden';
+            });
+            
+            // Close mobile menu
+            function closeMobileMenu() {
+                mobileMenu.classList.add('translate-x-full');
+                setTimeout(() => {
+                    mobileMenuOverlay.classList.add('hidden');
+                }, 300);
+                document.body.style.overflow = 'auto';
+            }
+            
+            mobileMenuClose.addEventListener('click', closeMobileMenu);
+            mobileMenuOverlay.addEventListener('click', (e) => {
+                if (e.target === mobileMenuOverlay) {
+                    closeMobileMenu();
+                }
+            });
+            
+            // Close menu when clicking on navigation links
+            document.querySelectorAll('#mobile-menu nav a').forEach(link => {
+                link.addEventListener('click', closeMobileMenu);
+            });
         }
+    }
+    
+    // Initialize mobile menu
+    initMobileMenu();
+    
+    // Add scroll animations
+    const observerOptions = {
+        threshold: 0.1,
+        rootMargin: '0px 0px -50px 0px'
+    };
+    
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('slide-in');
+            }
+        });
+    }, observerOptions);
+    
+    // Observe all feature cards
+    document.querySelectorAll('.feature-card').forEach(card => {
+        observer.observe(card);
     });
-}, observerOptions);
-
-// Observe all feature cards
-document.querySelectorAll('.feature-card').forEach(card => {
-    observer.observe(card);
-});
 
 // Utility functions
 function debounce(func, wait) {

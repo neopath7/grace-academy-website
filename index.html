@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
@@ -341,6 +341,7 @@
             <h1 class="mobile-nav-title gradient-text">Grace Academy</h1>
         </div>
         
+        <!-- Desktop Navigation -->
         <nav class="hidden md:flex space-x-6">
             <a href="#features" class="text-gray-700 hover:text-turquoise transition-colors tap-target">Features</a>
             <a href="#program" class="text-gray-700 hover:text-turquoise transition-colors tap-target">Program</a>
@@ -350,15 +351,71 @@
             <a href="#contact" class="text-gray-700 hover:text-turquoise transition-colors tap-target">Contact</a>
         </nav>
         
-        <div class="mobile-nav-actions flex items-center gap-2">
-            <button onclick="goToLogin()" class="text-turquoise hover:text-turquoise-dark font-medium transition-colors tap-target">
-                <span class="hidden sm:inline">Sign In</span>
-                <span class="sm:hidden"><i class="fas fa-sign-in-alt"></i></span>
+        <!-- Mobile Navigation -->
+        <div class="md:hidden flex items-center gap-2">
+            <!-- Hamburger Menu Button -->
+            <button id="mobile-menu-toggle" class="text-gray-700 hover:text-turquoise transition-colors tap-target p-2">
+                <i class="fas fa-bars text-xl"></i>
             </button>
-            <button onclick="goToSignup()" class="btn btn-primary !py-2 !px-3 sm:!px-4 !min-h-[40px] !text-sm sm:!text-base">
-                <span class="hidden sm:inline">Get Started</span>
-                <span class="sm:hidden">Join</span>
-            </button>
+            
+            <!-- Mobile Actions -->
+            <div class="mobile-nav-actions flex items-center gap-2">
+                <button onclick="goToLogin()" class="text-turquoise hover:text-turquoise-dark font-medium transition-colors tap-target">
+                    <span class="hidden sm:inline">Sign In</span>
+                    <span class="sm:hidden"><i class="fas fa-sign-in-alt"></i></span>
+                </button>
+                <button onclick="goToSignup()" class="btn btn-primary !py-2 !px-3 sm:!px-4 !min-h-[40px] !text-sm sm:!text-base">
+                    <span class="hidden sm:inline">Get Started</span>
+                    <span class="sm:hidden">Join</span>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu Overlay -->
+        <div id="mobile-menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden md:hidden">
+            <div id="mobile-menu" class="fixed top-0 right-0 h-full w-80 bg-white shadow-xl transform translate-x-full transition-transform duration-300 ease-in-out">
+                <div class="p-6">
+                    <!-- Close Button -->
+                    <div class="flex justify-between items-center mb-8">
+                        <h2 class="text-xl font-bold text-gray-900">Menu</h2>
+                        <button id="mobile-menu-close" class="text-gray-500 hover:text-gray-700 transition-colors">
+                            <i class="fas fa-times text-xl"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Navigation Links -->
+                    <nav class="space-y-4">
+                        <a href="#features" class="block py-3 px-4 text-gray-700 hover:text-turquoise hover:bg-gray-50 rounded-lg transition-colors tap-target">
+                            <i class="fas fa-star mr-3"></i>Features
+                        </a>
+                        <a href="#program" class="block py-3 px-4 text-gray-700 hover:text-turquoise hover:bg-gray-50 rounded-lg transition-colors tap-target">
+                            <i class="fas fa-graduation-cap mr-3"></i>Program
+                        </a>
+                        <a href="#how-it-works" class="block py-3 px-4 text-gray-700 hover:text-turquoise hover:bg-gray-50 rounded-lg transition-colors tap-target">
+                            <i class="fas fa-cogs mr-3"></i>How It Works
+                        </a>
+                        <a href="#testimonials" class="block py-3 px-4 text-gray-700 hover:text-turquoise hover:bg-gray-50 rounded-lg transition-colors tap-target">
+                            <i class="fas fa-star mr-3"></i>Reviews
+                        </a>
+                        <a href="feed.html" class="block py-3 px-4 text-gray-700 hover:text-turquoise hover:bg-gray-50 rounded-lg transition-colors tap-target">
+                            <i class="fas fa-rss mr-3"></i>Academy Feed
+                        </a>
+                        <a href="#contact" class="block py-3 px-4 text-gray-700 hover:text-turquoise hover:bg-gray-50 rounded-lg transition-colors tap-target">
+                            <i class="fas fa-envelope mr-3"></i>Contact
+                        </a>
+                    </nav>
+                    
+                    <!-- Mobile Actions -->
+                    <div class="mt-8 pt-6 border-t border-gray-200">
+                        <button onclick="goToLogin()" class="w-full mb-3 py-3 px-4 text-turquoise hover:text-turquoise-dark font-medium transition-colors tap-target border border-turquoise rounded-lg">
+                            <i class="fas fa-sign-in-alt mr-2"></i>Sign In
+                        </button>
+                        <button onclick="goToSignup()" class="w-full btn btn-primary">
+                            <i class="fas fa-rocket mr-2"></i>Get Started
+                        </button>
+                    </div>
+                </div>
+            </div>
         </div>
     </header>
 
@@ -368,8 +425,8 @@
             <strong class="block sm:inline">Now Enrolling for Fall 2025 Courses</strong>
             <span class="hidden sm:inline"> - </span>
             <span class="block sm:inline">Flexible payment plans available</span><br class="sm:hidden">
-            <a href="tel:(866)706-6363" class="underline hover:text-coral-red-light transition-colors text-xs sm:text-sm">Find a course near you</a> • 
-            <a href="tel:(866)706-6363" class="underline hover:text-coral-red-light transition-colors text-xs sm:text-sm">(866) 706-6363</a>
+            <a href="tel:(555)123-4567" class="underline hover:text-coral-red-light transition-colors text-xs sm:text-sm">Find a course near you</a> • 
+            <a href="tel:(555)123-4567" class="underline hover:text-coral-red-light transition-colors text-xs sm:text-sm">(555) 123-4567</a>
         </p>
     </div>
 
@@ -436,38 +493,6 @@
             </div>
         </section>
 
-        <!-- Course Search Section -->
-        <section class="py-12 sm:py-20 bg-gradient-to-br from-teal-50 to-cyan-50 -mx-4 px-4">
-            <div class="max-w-7xl mx-auto">
-                <div class="text-center mb-8">
-                    <h2 class="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">Browse available courses</h2>
-                    <p class="text-lg sm:text-xl text-gray-600">With locations nationwide, find a course near you that works with your schedule.</p>
-                </div>
-                
-                <div class="bg-white rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 md:p-8 max-w-2xl mx-auto">
-                    <form class="space-y-3 sm:space-y-4">
-                        <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
-                            <div class="flex-1">
-                                <input type="text" placeholder="Zip Code" class="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-turquoise focus:border-transparent text-sm sm:text-base">
-                            </div>
-                            <div class="flex-1">
-                                <select class="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-turquoise focus:border-transparent text-sm sm:text-base">
-                                    <option value="Dental Assistant">Dental Assistant</option>
-                                </select>
-                            </div>
-                            <div class="flex-1">
-                                <select class="w-full px-3 sm:px-4 py-2 sm:py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-turquoise focus:border-transparent text-sm sm:text-base">
-                                    <option value="100">100 Miles</option>
-                                </select>
-                            </div>
-                        </div>
-                        <button type="submit" class="btn btn-primary w-full sm:w-auto !py-2 sm:!py-3 !text-sm sm:!text-base">
-                            <i class="fas fa-search mr-1 sm:mr-2"></i>Find My Course
-                        </button>
-                    </form>
-                </div>
-            </div>
-        </section>
 
         <!-- Features Section -->
         <section id="features" class="py-12 sm:py-20">
@@ -507,7 +532,7 @@
                     </div>
                     
                     <!-- Feature 5 -->
-                    <div class="feature-card bg-gradient-to-br from-red-50 to-pink-50">
+                    <div class="feature-card bg-gradient-to-br from-red-50 to-coral-red-light">
                         <div class="career-emoji mb-4">📱</div>
                         <h3 class="text-xl font-bold text-gray-900 mb-3">Hybrid Learning</h3>
                         <p class="text-gray-600">Learn online and in-person. Flexible schedule that works with your life and commitments.</p>
@@ -551,7 +576,7 @@
                                 <span class="text-gray-700">10-week intensive program</span>
                             </div>
                             <div class="flex items-center space-x-3">
-                                <i class="fas fa-laptop text-purple-500 text-xl tap-target"></i>
+                                <i class="fas fa-laptop text-turquoise text-xl tap-target"></i>
                                 <span class="text-gray-700">Hybrid online and in-person learning</span>
                             </div>
                             <div class="flex items-center space-x-3">

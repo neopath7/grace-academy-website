@@ -342,18 +342,26 @@
         </div>
         
         <!-- Desktop Navigation -->
-        <nav class="hidden md:flex space-x-6">
-            <a href="#features" class="text-gray-700 hover:text-turquoise transition-colors tap-target">Features</a>
-            <a href="#program" class="text-gray-700 hover:text-turquoise transition-colors tap-target">Program</a>
-            <a href="#how-it-works" class="text-gray-700 hover:text-turquoise transition-colors tap-target">How It Works</a>
-            <a href="#testimonials" class="text-gray-700 hover:text-turquoise transition-colors tap-target">Reviews</a>
-            <a href="feed.html" class="text-gray-700 hover:text-turquoise transition-colors tap-target">Academy Feed</a>
-            <a href="#contact" class="text-gray-700 hover:text-turquoise transition-colors tap-target">Contact</a>
-        </nav>
+        <div class="hidden md:flex items-center space-x-6">
+            <!-- Desktop Hamburger Menu Button -->
+            <button id="desktop-menu-toggle" class="text-coral-red hover:text-coral-red-dark transition-colors tap-target p-2">
+                <i class="fas fa-bars text-xl"></i>
+            </button>
+            
+            <!-- Desktop Actions -->
+            <div class="flex items-center gap-4">
+                <button onclick="goToLogin()" class="text-coral-red hover:text-coral-red-dark font-medium transition-colors tap-target">
+                    Sign In
+                </button>
+                <button onclick="goToSignup()" class="btn btn-primary !py-2 !px-4 !min-h-[40px] !text-sm">
+                    Get Started
+                </button>
+            </div>
+        </div>
         
         <!-- Mobile Navigation -->
         <div class="md:hidden flex items-center gap-2">
-            <!-- Hamburger Menu Button -->
+            <!-- Mobile Hamburger Menu Button -->
             <button id="mobile-menu-toggle" class="text-gray-700 hover:text-turquoise transition-colors tap-target p-2">
                 <i class="fas fa-bars text-xl"></i>
             </button>
@@ -371,6 +379,53 @@
             </div>
         </div>
         
+        <!-- Desktop Menu Overlay -->
+        <div id="desktop-menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden md:block">
+            <div id="desktop-menu" class="fixed top-0 right-0 h-full w-80 bg-white shadow-xl transform translate-x-full transition-transform duration-300 ease-in-out">
+                <div class="p-6">
+                    <!-- Close Button -->
+                    <div class="flex justify-between items-center mb-8">
+                        <h2 class="text-xl font-bold text-gray-900">Menu</h2>
+                        <button id="desktop-menu-close" class="text-gray-500 hover:text-gray-700 transition-colors">
+                            <i class="fas fa-times text-xl"></i>
+                        </button>
+                    </div>
+                    
+                    <!-- Navigation Links -->
+                    <nav class="space-y-4">
+                        <a href="#features" class="block py-3 px-4 text-coral-red hover:text-coral-red-dark hover:bg-gray-50 rounded-lg transition-colors tap-target">
+                            <i class="fas fa-star mr-3"></i>Features
+                        </a>
+                        <a href="#program" class="block py-3 px-4 text-coral-red hover:text-coral-red-dark hover:bg-gray-50 rounded-lg transition-colors tap-target">
+                            <i class="fas fa-graduation-cap mr-3"></i>Program
+                        </a>
+                        <a href="#how-it-works" class="block py-3 px-4 text-coral-red hover:text-coral-red-dark hover:bg-gray-50 rounded-lg transition-colors tap-target">
+                            <i class="fas fa-cogs mr-3"></i>How It Works
+                        </a>
+                        <a href="#testimonials" class="block py-3 px-4 text-coral-red hover:text-coral-red-dark hover:bg-gray-50 rounded-lg transition-colors tap-target">
+                            <i class="fas fa-star mr-3"></i>Reviews
+                        </a>
+                        <a href="feed.html" class="block py-3 px-4 text-coral-red hover:text-coral-red-dark hover:bg-gray-50 rounded-lg transition-colors tap-target">
+                            <i class="fas fa-rss mr-3"></i>Academy Feed
+                        </a>
+                        <a href="#contact" class="block py-3 px-4 text-coral-red hover:text-coral-red-dark hover:bg-gray-50 rounded-lg transition-colors tap-target">
+                            <i class="fas fa-envelope mr-3"></i>Contact
+                        </a>
+                    </nav>
+                    
+                    <!-- Desktop Actions -->
+                    <div class="mt-8 pt-6 border-t border-gray-200">
+                        <button onclick="goToLogin()" class="w-full mb-3 py-3 px-4 text-coral-red hover:text-coral-red-dark font-medium transition-colors tap-target border border-coral-red rounded-lg">
+                            <i class="fas fa-sign-in-alt mr-2"></i>Sign In
+                        </button>
+                        <button onclick="goToSignup()" class="w-full btn btn-primary text-coral-red">
+                            <i class="fas fa-rocket mr-2"></i>Get Started
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
         <!-- Mobile Menu Overlay -->
         <div id="mobile-menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-40 hidden md:hidden">
             <div id="mobile-menu" class="fixed top-0 right-0 h-full w-80 bg-white shadow-xl transform translate-x-full transition-transform duration-300 ease-in-out">

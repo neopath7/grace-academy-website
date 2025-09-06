@@ -352,8 +352,49 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     }
     
-    // Initialize mobile menu
+    // Desktop hamburger menu functionality
+    function initDesktopMenu() {
+        const desktopMenuToggle = document.getElementById('desktop-menu-toggle');
+        const desktopMenuClose = document.getElementById('desktop-menu-close');
+        const desktopMenuOverlay = document.getElementById('desktop-menu-overlay');
+        const desktopMenu = document.getElementById('desktop-menu');
+        
+        if (desktopMenuToggle && desktopMenuOverlay && desktopMenu) {
+            // Open desktop menu
+            desktopMenuToggle.addEventListener('click', () => {
+                desktopMenuOverlay.classList.remove('hidden');
+                setTimeout(() => {
+                    desktopMenu.classList.remove('translate-x-full');
+                }, 10);
+                document.body.style.overflow = 'hidden';
+            });
+            
+            // Close desktop menu
+            function closeDesktopMenu() {
+                desktopMenu.classList.add('translate-x-full');
+                setTimeout(() => {
+                    desktopMenuOverlay.classList.add('hidden');
+                }, 300);
+                document.body.style.overflow = 'auto';
+            }
+            
+            desktopMenuClose.addEventListener('click', closeDesktopMenu);
+            desktopMenuOverlay.addEventListener('click', (e) => {
+                if (e.target === desktopMenuOverlay) {
+                    closeDesktopMenu();
+                }
+            });
+            
+            // Close menu when clicking on navigation links
+            document.querySelectorAll('#desktop-menu nav a').forEach(link => {
+                link.addEventListener('click', closeDesktopMenu);
+            });
+        }
+    }
+    
+    // Initialize both menus
     initMobileMenu();
+    initDesktopMenu();
     
     // Add scroll animations
     const observerOptions = {

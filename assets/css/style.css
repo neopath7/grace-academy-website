@@ -31,7 +31,25 @@
 }
 
 .mobile-nav a:hover {
-    background: rgba(32, 178, 170, 0.1) !important;
+    background: rgba(255, 107, 107, 0.1) !important;
+}
+
+/* Ensure all navigation elements have transparent backgrounds */
+nav a, .mobile-nav button, .mobile-nav-actions button {
+    background: transparent !important;
+}
+
+/* Fix section visibility issues */
+section {
+    opacity: 1 !important;
+    visibility: visible !important;
+    display: block !important;
+}
+
+/* Ensure proper section rendering */
+.feature-card, .testimonial-card, .hero-gradient {
+    opacity: 1 !important;
+    transform: none !important;
 }
 
 .mobile-nav-title {
@@ -147,12 +165,12 @@
 }
 
 ::-webkit-scrollbar-thumb {
-    background: linear-gradient(45deg, #667eea, #764ba2);
+    background: linear-gradient(45deg, #20b2aa, #ff6b6b);
     border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-    background: linear-gradient(45deg, #5a67d8, #6b46c1);
+    background: linear-gradient(45deg, #20b2aa, #ff6b6b);
 }
 
 /* Selection styling */
